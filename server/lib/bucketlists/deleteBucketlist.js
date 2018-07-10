@@ -4,7 +4,7 @@ const models = require('../../models/index')
  * @function deleteBucketlist
  * deletes bucketlist
  * @param {String} id
- * @return {String} successMessage
+ * @return {Object}
  */
 module.exports = async id => {
   try {
