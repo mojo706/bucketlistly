@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const BucketlistItem = sequelize.define('Item', {
+    id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,7 +37,6 @@ module.exports = (sequelize, DataTypes) => {
   BucketlistItem.associate = models => {
     BucketlistItem.belongsTo(models.Bucketlist, {
       foreignKey: 'bucketlistId',
-      onDelete: 'CASCADE',
     })
   }
   return BucketlistItem

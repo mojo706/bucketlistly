@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
   const Bucketlist = sequelize.define('Bucketlist', {
+    id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -8,23 +13,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    dateCreated: {
+    createdAt: {
       type: DataTypes.DATE,
+      field: 'dateCreated',
       allowNull: false,
     },
-    dateModified: {
+    updatedAt: {
       type: DataTypes.DATE,
-      allowNull: false,
-    },
-    createBy: {
-      type: DataTypes.STRING,
+      field: 'dateModified',
       allowNull: false,
     },
   })
+
   Bucketlist.associate = models => {
     Bucketlist.hasMany(models.TodoItem, {
       foreignKey: 'todoId',
       as: 'todoItems',
+      onDelete: 'CASCADE',
     })
   }
   return Bucketlist
