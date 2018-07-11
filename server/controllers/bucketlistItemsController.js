@@ -1,9 +1,9 @@
 const bucketlistItemRepository = require('../lib/items')
-const formatCreateBucketlistItemPayload = require('../lib/adapters/formatCreateBucketlistItemPayload')
+const buildBucketlistItemBody = require('../lib/adapters/buildBucketlistItemBody')
 
 class BucketlistItemController {
   static async createBucketlist(request, response) {
-    const body = formatCreateBucketlistItemPayload(request)
+    const body = buildBucketlistItemBody(request)
     response = await bucketlistItemRepository.createBucketlistItem(body)
     return response
   }
@@ -16,7 +16,7 @@ class BucketlistItemController {
 
   static async updateBucketlistItem(request, response) {
     const { itemId } = request
-    const body = formatCreateBucketlistItemPayload(request)
+    const body = buildBucketlistItemBody(request)
     response = await bucketlistItemRepository.updateBucketlistItem(itemId, body)
     return response
   }
