@@ -9,10 +9,10 @@ const models = require('../../models/index')
 
 module.exports = async body => {
   try {
-    const newBucketlistItem = await models.BucketlistItem.create({
+    const newItem = await models.BucketlistItem.create({
       body,
     })
-    return newBucketlistItem
+    return newItem
   } catch (err) {
     throw new Error(err)
   }
