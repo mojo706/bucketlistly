@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Bucketlist = sequelize.define('Bucketlist', {
+  const Bucketlist = sequelize.define('Bucketlists', {
     id: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,12 +23,16 @@ module.exports = (sequelize, DataTypes) => {
       field: 'dateModified',
       allowNull: false,
     },
+    createdBy: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   })
 
   Bucketlist.associate = models => {
-    Bucketlist.hasMany(models.TodoItem, {
-      foreignKey: 'todoId',
-      as: 'todoItems',
+    Bucketlist.hasMany(models.BucketlistItems, {
+      foreignKey: 'id',
+      as: 'bucketlistItems',
       onDelete: 'CASCADE',
     })
   }
