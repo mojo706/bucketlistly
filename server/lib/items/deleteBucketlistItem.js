@@ -8,17 +8,10 @@ const models = require('../../models/index')
  */
 module.exports = async id => {
   try {
-    let message = ''
-    const bucketlistItemToDelete = await models.Bucketlist.findById(id)
-    if (!bucketlistItemToDelete) {
-      message = 'That buckelist item does not exist'
-      return { error: message }
-    }
-    await models.Bucketlist.destroy({
+    await models.Bucketlists.destroy({
       where: { id },
     })
-    message = 'Bucketlist item successfully deleted'
-    return { message }
+    return { message: 'Bucketlist item successfully deleted', statusCode: 200 }
   } catch (err) {
     throw new Error(err)
   }
