@@ -6,13 +6,8 @@
  */
 
 module.exports = req => {
-  const { name } = req
-  const { description } = req
-  const { done } = req
-  const body = {
-    name,
-    description,
-    done,
-  }
+  const { bucketlistId } = req.params
+  const { body } = req
+  body.bucketlistId = bucketlistId
   return body
 }

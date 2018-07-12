@@ -8,7 +8,7 @@ const models = require('../../models/index')
  */
 
 module.exports = async id => {
-  const bucketlist = await models.Bucketlist.findOne({
+  const bucketlist = await models.Bucketlists.findOne({
     where: { id },
     plain: true,
   })

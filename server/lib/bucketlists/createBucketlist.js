@@ -8,10 +8,17 @@ const models = require('../../models/index')
  */
 module.exports = async body => {
   try {
-    const newBucketlist = await models.Bucketlist.create({
-      body,
+    const [bucketlist, created] = await models.Bucketlists.findOrCreate({
+      where: { name: body.name },
+      defaults: body,
     })
-    return newBucketlist
+    if (!created) {
+      return {
+        error: 'A bucketlist with that name already exists',
+        statusCode: 409,
+      }
+    }
+    return bucketlist
   } catch (err) {
     throw new Error(err)
   }

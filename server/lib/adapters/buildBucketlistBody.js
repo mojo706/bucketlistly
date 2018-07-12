@@ -5,12 +5,4 @@
  * @return {Object} body
  */
 
-module.exports = req => {
-  const { name } = req
-  const { description } = req
-  const body = {
-    name,
-    description,
-  }
-  return body
-}
+module.exports = req => req.body
