@@ -2238,6 +2238,10 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
 
+pushid@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/pushid/-/pushid-1.0.0.tgz#50198c3dc6422ead889a34fead0628c9446daf5e"
+
 qs@6.5.1:
   version "6.5.1"
   resolved "https://registry.npmjs.org/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
