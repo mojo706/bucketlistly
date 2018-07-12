@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const BucketlistItem = sequelize.define('Item', {
+  const BucketlistItem = sequelize.define('BucketlistItems', {
     id: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,23 +19,21 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false,
     },
     bucketlistId: {
-      type: DataTypes.INTEGER,
-    },
-    dateCreated: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    dateModified: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
-    createBy: {
       type: DataTypes.STRING,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      field: 'dateCreated',
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      field: 'dateModified',
       allowNull: false,
     },
   })
   BucketlistItem.associate = models => {
-    BucketlistItem.belongsTo(models.Bucketlist, {
+    BucketlistItem.belongsTo(models.Bucketlists, {
       foreignKey: 'bucketlistId',
     })
   }
