@@ -8,7 +8,7 @@ const models = require('../../models/index')
  */
 
 module.exports = async () => {
-  const bucketlists = await models.Bucketlist.findAll({
+  const bucketlists = await models.Bucketlists.findAll({
     plain: true,
   })
   return bucketlists
