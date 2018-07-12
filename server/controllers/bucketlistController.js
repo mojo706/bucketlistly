@@ -1,35 +1,41 @@
+const fancyID = require('pushid')
+
 const bucketlistRepository = require('../lib/bucketlists')
 const buildBucketlistBody = require('../lib/adapters/buildBucketlistBody')
 
 class BucketlistController {
   static async createBucketlist(request, response) {
     const { body } = request
-    response = await bucketlistRepository.createBucketlist(body)
-    return response
+    body.id = fancyID()
+    const resp = await bucketlistRepository.createBucketlist(body)
+    if (resp.error) {
+      return response.status(resp.statusCode).json({ error: resp.error })
+    }
+    return response.status(201).json(resp)
   }
 
   static async deleteBucketlist(request, response) {
     const { id } = request.params
-    response = await bucketlistRepository.deleteBucketlist(id)
-    return response
+    const resp = await bucketlistRepository.deleteBucketlist(id)
+    return response.status(200).json(resp)
   }
 
   static async getBucketlist(request, response) {
     const { id } = request.params
-    response = await bucketlistRepository.getBucketlist(id)
-    return response
+    const resp = await bucketlistRepository.getBucketlist(id)
+    return response.status(200).json(resp)
   }
 
   static async listBucketlist(request, response) {
-    response = await bucketlistRepository.listBucketlist()
-    return response
+    const resp = await bucketlistRepository.listBucketlists()
+    return response.status(200).json({ bucketlist: resp })
   }
 
   static async updateBucketlist(request, response) {
     const { id } = request.params
     const body = buildBucketlistBody(request)
-    response = await bucketlistRepository.updateBucketlist(id, body)
-    return response
+    const resp = await bucketlistRepository.updateBucketlist(id, body)
+    return response.status(204).json(resp)
   }
 }
 
