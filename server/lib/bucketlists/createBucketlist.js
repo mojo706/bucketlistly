@@ -20,6 +20,6 @@ module.exports = async body => {
     }
     return bucketlist
   } catch (err) {
-    throw new Error(err)
+    throw new Error(`Missing Required Parameters: ${err}`)
   }
 }
