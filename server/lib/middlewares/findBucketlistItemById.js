@@ -17,5 +17,5 @@ module.exports = async (request, response, next) => {
       .status(404)
       .json({ error: 'That buckelist item does not exist' })
   }
-  return next(request, response)
+  return next()
 }
