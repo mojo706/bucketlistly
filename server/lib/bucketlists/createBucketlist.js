@@ -12,7 +12,7 @@ module.exports = async body => {
       where: { name: body.name },
       defaults: body,
     })
-    if (!created) {
+    if (created === false) {
       return {
         error: 'A bucketlist with that name already exists',
         statusCode: 409,
@@ -20,6 +20,6 @@ module.exports = async body => {
     }
     return bucketlist
   } catch (err) {
-    throw new Error(`Missing Required Parameters: ${err}`)
+    throw new Error(`Execution Errors: ${err}`)
   }
 }
