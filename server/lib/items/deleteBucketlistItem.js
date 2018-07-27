@@ -8,7 +8,7 @@ const models = require('../../models/index')
  */
 module.exports = async id => {
   try {
-    await models.Bucketlists.destroy({
+    await models.BucketlistItems.destroy({
       where: { id },
     })
     return { message: 'Bucketlist item successfully deleted', statusCode: 200 }

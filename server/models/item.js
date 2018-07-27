@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     bucketlistId: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     createdAt: {
       type: DataTypes.DATE,

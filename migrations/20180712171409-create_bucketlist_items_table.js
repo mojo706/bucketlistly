@@ -14,6 +14,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      done: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      bucketlistId: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         type: Sequelize.DATE,
         field: 'dateCreated',
@@ -22,10 +31,6 @@ module.exports = {
       updatedAt: {
         type: Sequelize.DATE,
         field: 'dateModified',
-        allowNull: false,
-      },
-      createBy: {
-        type: Sequelize.STRING,
         allowNull: false,
       },
     }),

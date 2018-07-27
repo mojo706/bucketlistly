@@ -15,13 +15,13 @@ class BucketlistController {
   }
 
   static async deleteBucketlist(request, response) {
-    const { id } = request.params
+    const { bucketlistId: id } = request.params
     const resp = await bucketlistRepository.deleteBucketlist(id)
     return response.status(200).json(resp)
   }
 
   static async getBucketlist(request, response) {
-    const { id } = request.params
+    const { bucketlistId: id } = request.params
     const resp = await bucketlistRepository.getBucketlist(id)
     return response.status(200).json(resp)
   }
@@ -32,7 +32,7 @@ class BucketlistController {
   }
 
   static async updateBucketlist(request, response) {
-    const { id } = request.params
+    const { bucketlistId: id } = request.params
     const body = buildBucketlistBody(request)
     const resp = await bucketlistRepository.updateBucketlist(id, body)
     return response.status(204).json(resp)
