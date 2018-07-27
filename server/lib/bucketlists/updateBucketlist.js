@@ -10,9 +10,11 @@ module.exports = async (id, body) => {
   try {
     const updatedBucketlist = await models.Bucketlists.update(body, {
       where: { id },
+      plain: true,
+      returning: true,
     })
-    return { bucketlist: updatedBucketlist }
+    return updatedBucketlist[1]
   } catch (err) {
-    throw new Error(err)
+    throw new Error(`Execution Errors: ${err}`)
   }
 }
