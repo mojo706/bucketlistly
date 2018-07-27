@@ -13,6 +13,6 @@ module.exports = async id => {
     })
     return { message: 'Bucketlist successfully deleted' }
   } catch (err) {
-    throw new Error(err)
+    throw new Error(`Execution Errors: ${err}`)
   }
 }
