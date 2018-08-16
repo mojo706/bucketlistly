@@ -8,11 +8,17 @@ const models = require('../../models/index')
  */
 module.exports = async id => {
   try {
-    await models.BucketlistItems.destroy({
+    const deletedItem = await models.BucketlistItems.destroy({
       where: { id },
     })
+    if (!deletedItem) {
+      return {
+        message: 'Bucketlist item does not exist',
+        statusCode: 409,
+      }
+    }
     return { message: 'Bucketlist item successfully deleted', statusCode: 200 }
   } catch (err) {
-    throw new Error(err)
+    throw new Error(`Execution Errors: ${err}`)
   }
 }
