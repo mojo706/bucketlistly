@@ -1,0 +1,18 @@
+{
+  "development": {
+    "username": "chuchu",
+    "password": null,
+    "database": "bucketlistly",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "chuchu",
+    "password": null,
+    "database": "bucketlistly_test",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
+  }
+}
