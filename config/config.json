@@ -1,11 +1,11 @@
 {
   "development": {
-    "hostUrl": "localhost:8000/api/bucketlists/"
+    "hostUrl": "http://localhost:8000/api/"
   },
   "test": {
-    "hostUrl": "localhost:8000/api/bucketlists/"
+    "hostUrl": "http://localhost:8000/api/"
   },
   "production": {
-    "hostUrl": "localhost:8000/api/bucketlists/"
+    "hostUrl": "http://localhost:8000/api/"
   }
 }
