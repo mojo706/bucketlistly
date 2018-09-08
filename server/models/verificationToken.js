@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const VericationToken = sequelize.define(
-    'VerificationToken',
+    'VerificationTokens',
     {
       userId: DataTypes.STRING,
       token: DataTypes.STRING,
@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       classMethods: {
         associate: models => {
-          VericationToken.belongsTo(models.User, {
+          VericationToken.belongsTo(models.Users, {
             as: 'user',
             foreignKey: 'userId',
             foreignKeyConstraint: true,
