@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   })
 
   User.associate = models => {
-    User.hasOne(models.VerificationToken, {
+    User.hasOne(models.VerificationTokens, {
       as: 'verificationtoken',
       foreignKey: 'userId',
       foreignKeyConstraint: true,
