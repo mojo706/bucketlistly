@@ -6,7 +6,6 @@ const findBucketlistById = require('../lib/middlewares/findBucketlistById')
 const findBucketlistItemById = require('../lib/middlewares/findBucketlistItemById')
 const bucketlistController = require('../controllers/bucketlistController')
 const bucketlistItemController = require('../controllers/bucketlistItemsController')
-const usersController = require('../controllers/usersController')
 
 const router = () => {
   bucketlistRouter.route('/').post(bucketlistController.createBucketlist)
@@ -25,10 +24,6 @@ const router = () => {
     .route('/:bucketlistId/items/:itemId')
     .put(bucketlistItemController.updateBucketlistItem)
     .delete(bucketlistItemController.deletBucketlistItem)
-  // POST /signup
-  bucketlistRouter.route('/signup').post(usersController.createUserFromEmail)
-  // POST /verication?token=[string]&email=[string]
-  bucketlistRouter.route('/verifiation').post(usersController.verifyEmail)
   return bucketlistRouter
 }
 
