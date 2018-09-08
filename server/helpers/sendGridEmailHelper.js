@@ -5,12 +5,12 @@ const env = process.env.NODE_ENV || 'development'
 const config = require('../../config/config.json')[env]
 
 const sendVerificationEmail = (to, token) => {
-  const hostUrl = config.hostURL
+  const { hostUrl } = config
   const msg = {
     to,
     from: process.env.EMAIL_SENDER,
     subject: 'Please verify your email',
-    html: `Click on this link to verify your email ${hostUrl}/verification?token=${token}&email=${to}`,
+    html: `Click on this link to verify your email ${hostUrl}users/verification?token=${token}&email=${to}`,
   }
   sgMail.send(msg, error => {
     if (error) {
