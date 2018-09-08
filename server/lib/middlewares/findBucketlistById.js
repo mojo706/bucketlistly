@@ -13,7 +13,7 @@ module.exports = async (request, response, next) => {
   const { bucketlistId } = request.params
   const bucketlist = await models.Bucketlists.findById(bucketlistId)
   if (!bucketlist) {
-    response.status(404).json({ error: 'That buckelist does not exist' })
+    response.status(404).json({ error: 'That bucketlist does not exist' })
     return
   }
   next()
