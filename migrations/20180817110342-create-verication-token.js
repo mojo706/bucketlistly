@@ -27,15 +27,8 @@ module.exports = {
         type: Sequelize.DATE,
       },
     })
-    await queryInterface.sequelize.query(`
-        CREATE EVENT expireToken
-        ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL  1 DAY 
-        DO
-        DELETE FROM verification_tokens WHERE createdAt < DATE_SUB(NOW(), INTERVAL 1 DAY);
-        `)
   },
   down: async queryInterface => {
     await queryInterface.dropTable('VerificationTokens')
-    await queryInterface.sequelize.query(`DROP EVENT IF EXISTS  expireToken`)
   },
 }
