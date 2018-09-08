@@ -1,11 +1,11 @@
-import crypto from 'crypto-random-string'
+const crypto = require('crypto-random-string')
 
 const { sendVerificationEmail } = require('../../helpers/sendGridEmailHelper')
-const models = require('../../models/index')
+const models = require('../../models/')
 
 module.exports = async body => {
   try {
-    const [user, created] = await models.User.findOrCreate({
+    const [user, created] = await models.Users.findOrCreate({
       where: { email: body.email },
       defaults: body,
     })
@@ -15,7 +15,7 @@ module.exports = async body => {
         statusCode: 409,
       }
     }
-    const result = await models.VerificationToken.create({
+    const result = await models.VerificationTokens.create({
       userId: user.id,
       token: crypto(16),
     })
