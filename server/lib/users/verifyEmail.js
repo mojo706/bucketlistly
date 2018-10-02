@@ -2,7 +2,7 @@ const models = require('../../models/index')
 
 module.exports = async query => {
   try {
-    const user = await models.User.find({
+    const user = await models.Users.find({
       where: { email: query.email },
     })
     if (!user) {
@@ -17,8 +17,8 @@ module.exports = async query => {
         statusCode: 202,
       }
     }
-    const foundToken = await models.VerificationToken.find({
-      where: { token: query.verificationToken },
+    const foundToken = await models.VerificationTokens.find({
+      where: { token: query.token },
     })
     if (foundToken) {
       const updatedUser = await user.update({ isVerified: true })
@@ -35,7 +35,7 @@ module.exports = async query => {
     }
     return {
       message: 'Token Expired',
-      statusCode: 404,
+      statusCode: 400,
     }
   } catch (error) {
     throw new Error(`Execution Errors: ${error}`)
