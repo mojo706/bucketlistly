@@ -1,5 +1,12 @@
+const cuid = require('cuid')
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('Users', {
+    id: {
+      primaryKey: true,
+      type: DataTypes.STRING,
+      defaultValue: () => cuid(),
+    },
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,

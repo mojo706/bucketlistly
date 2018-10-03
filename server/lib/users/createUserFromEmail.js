@@ -1,10 +1,15 @@
 const crypto = require('crypto-random-string')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
 const { sendVerificationEmail } = require('../../helpers/sendGridEmailHelper')
 const models = require('../../models/')
 
+const secret = process.env.SECRET_KEY
+
 module.exports = async body => {
   try {
+    body.password = bcrypt.hashSync(body.password, 8)
     const [user, created] = await models.Users.findOrCreate({
       where: { email: body.email },
       defaults: body,
@@ -15,9 +20,11 @@ module.exports = async body => {
         statusCode: 409,
       }
     }
+    const expireToken = jwt.sign({ id: user.id }, secret, { expiresIn: 86400 })
     const result = await models.VerificationTokens.create({
       userId: user.id,
       token: crypto(16),
+      expireToken,
     })
     sendVerificationEmail(user.email, result.token)
     return {

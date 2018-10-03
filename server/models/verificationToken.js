@@ -1,14 +1,22 @@
+const cuid = require('cuid')
+
 module.exports = (sequelize, DataTypes) => {
-  const VericationToken = sequelize.define(
+  const VerificationToken = sequelize.define(
     'VerificationTokens',
     {
+      id: {
+        primaryKey: true,
+        type: DataTypes.STRING,
+        defaultValue: () => cuid(),
+      },
       userId: DataTypes.STRING,
       token: DataTypes.STRING,
+      expireToken: DataTypes.STRING,
     },
     {
       classMethods: {
         associate: models => {
-          VericationToken.belongsTo(models.Users, {
+          VerificationToken.belongsTo(models.Users, {
             as: 'user',
             foreignKey: 'userId',
             foreignKeyConstraint: true,
@@ -17,5 +25,5 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   )
-  return VericationToken
+  return VerificationToken
 }

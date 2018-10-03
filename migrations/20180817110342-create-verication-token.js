@@ -3,18 +3,21 @@ module.exports = {
     await queryInterface.createTable('VerificationTokens', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       userId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
         onUpdate: 'cascade',
         onDelete: 'cascade',
         references: { model: 'Users', key: 'id' },
       },
       token: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      expireToken: {
         type: Sequelize.STRING,
         allowNull: false,
       },
